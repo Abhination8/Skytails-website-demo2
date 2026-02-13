@@ -73,10 +73,10 @@ export default function Landing() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-24 bg-white">
+      <section id="why-skytails" className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-4xl font-display font-bold text-slate-900 mb-4">Why PetWealth?</h2>
+            <h2 className="text-4xl font-display font-bold text-slate-900 mb-4">Why SkyTails?</h2>
             <p className="text-lg text-slate-600">We're more than just a savings account. We're a comprehensive financial safety net for your furry family members.</p>
           </div>
 
@@ -116,6 +116,82 @@ export default function Landing() {
                 <p className="text-slate-600 leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section id="how-it-works" className="py-24 bg-slate-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-4xl font-display font-bold text-slate-900 mb-4">How it works</h2>
+            <p className="text-lg text-slate-600">Getting started with SkyTails is simple and fast.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-12">
+            {[
+              { step: "01", title: "Create Account", desc: "Sign up in seconds with just your email and pet's name." },
+              { step: "02", title: "Set Your Goal", desc: "Choose a monthly contribution that fits your budget." },
+              { step: "03", title: "Watch It Grow", desc: "Your funds are invested in pet-focused growth portfolios." }
+            ].map((item, i) => (
+              <div key={i} className="relative">
+                <span className="text-6xl font-display font-bold text-blue-100 absolute -top-8 -left-4 z-0">{item.step}</span>
+                <div className="relative z-10">
+                  <h3 className="text-xl font-bold mb-3">{item.title}</h3>
+                  <p className="text-slate-600">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Journey Section */}
+      <section id="our-journey" className="py-24 bg-white">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
+          <div className="flex-1">
+            <h2 className="text-4xl font-display font-bold text-slate-900 mb-6">Our journey</h2>
+            <p className="text-lg text-slate-600 mb-4">
+              SkyTails started with a simple realization: our pets aren't just animals, they're family. And family deserves financial security.
+            </p>
+            <p className="text-lg text-slate-600">
+              Founded in 2024, we've helped thousands of pet owners build a safety net that ensures their companions get the best care, no matter what life throws their way.
+            </p>
+          </div>
+          <div className="flex-1 rounded-3xl overflow-hidden shadow-xl">
+            <img src="https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?q=80&w=1000&auto=format&fit=crop" alt="Pet and owner" className="w-full h-auto" />
+          </div>
+        </div>
+      </section>
+
+      {/* Customer Testimonials */}
+      <section id="testimonials" className="py-24 bg-blue-600 text-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-display font-bold text-center mb-16">What does our customer say</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {[
+              { quote: "SkyTails gave me peace of mind when Luna needed unexpected surgery. The fund was there when I needed it most.", author: "Sarah M., Dog Mom" },
+              { quote: "I love seeing the projected growth for Oliver's future. It's so much more than a savings account.", author: "James R., Cat Dad" }
+            ].map((t, i) => (
+              <div key={i} className="p-8 bg-white/10 backdrop-blur-md rounded-3xl border border-white/20">
+                <p className="text-xl italic mb-6">"{t.quote}"</p>
+                <p className="font-bold">— {t.author}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Info */}
+      <section id="contact" className="py-24 bg-slate-50">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl font-display font-bold text-slate-900 mb-8">Contact Info</h2>
+          <div className="max-w-md mx-auto space-y-4">
+            <p className="text-lg text-slate-600">Questions? We're here to help.</p>
+            <div className="p-6 bg-white rounded-2xl shadow-sm space-y-2">
+              <p className="font-bold text-slate-900">Email: support@skytails.com</p>
+              <p className="font-bold text-slate-900">Phone: +1 (555) PET-BOND</p>
+              <p className="text-slate-500">123 Furry Friends Lane, Petaluma, CA</p>
+            </div>
           </div>
         </div>
       </section>

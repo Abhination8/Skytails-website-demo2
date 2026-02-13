@@ -1,17 +1,39 @@
-import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
+import { 
+  ResponsiveContainer, 
+  AreaChart, 
+  Area, 
+  XAxis, 
+  YAxis, 
+  Tooltip, 
+  CartesianGrid 
+} from "recharts";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
-
-const data = [
-  { month: "Jan", amount: 1200 },
-  { month: "Feb", amount: 1350 },
-  { month: "Mar", amount: 1500 },
-  { month: "Apr", amount: 1750 },
-  { month: "May", amount: 2100 },
-  { month: "Jun", amount: 2400 },
-];
+import { useDashboard } from "@/hooks/use-dashboard";
 
 export function GrowthChart() {
+  const { data } = useDashboard();
+  
+  if (!data) return null;
+
+  const monthly = data.financialProfile.monthlyContribution || 50;
+  const initial = data.financialProfile.totalSavings || 0;
+  const annualReturn = 0.07; // 7% expected return
+  
+  const chartData = Array.from({ length: 11 }, (_, i) => {
+    const year = i;
+    const months = year * 12;
+    const ratePerMonth = annualReturn / 12;
+    // Future value of a series
+    const total = initial * Math.pow(1 + ratePerMonth, months) + 
+                  monthly * ((Math.pow(1 + ratePerMonth, months) - 1) / ratePerMonth);
+    
+    return {
+      year: `Year ${year}`,
+      value: Math.round(total)
+    };
+  });
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -19,26 +41,32 @@ export function GrowthChart() {
       transition={{ duration: 0.5 }}
     >
       <Card className="border-0 shadow-soft overflow-hidden">
-        <CardHeader className="pb-2">
+        <CardHeader className="bg-slate-50/50 border-b border-slate-100 pb-4">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-lg font-bold text-slate-800">Portfolio Growth</CardTitle>
-            <span className="text-sm font-medium text-green-600 bg-green-50 px-3 py-1 rounded-full">
-              +12.5% this year
-            </span>
+            <div>
+              <CardTitle className="text-lg font-display font-bold text-slate-900">Projected Growth</CardTitle>
+              <p className="text-xs text-slate-500">Based on ${monthly}/mo at 7% expected annual return</p>
+            </div>
+            <div className="text-right">
+              <p className="text-xs text-slate-400 uppercase font-bold tracking-wider">10 Year Target</p>
+              <p className="text-xl font-display font-bold text-green-600">
+                ${chartData[10].value.toLocaleString()}
+              </p>
+            </div>
           </div>
         </CardHeader>
-        <CardContent className="h-[300px] p-0 mt-4">
+        <CardContent className="h-[300px] p-0 mt-6">
           <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={data} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+            <AreaChart data={chartData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
               <defs>
-                <linearGradient id="colorAmount" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.2}/>
-                  <stop offset="95%" stopColor="#3B82F6" stopOpacity={0}/>
+                <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#2563eb" stopOpacity={0.1}/>
+                  <stop offset="95%" stopColor="#2563eb" stopOpacity={0}/>
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
+              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
               <XAxis 
-                dataKey="month" 
+                dataKey="year" 
                 axisLine={false} 
                 tickLine={false} 
                 tick={{ fill: '#94a3b8', fontSize: 12 }} 
@@ -48,19 +76,24 @@ export function GrowthChart() {
                 axisLine={false} 
                 tickLine={false} 
                 tick={{ fill: '#94a3b8', fontSize: 12 }} 
-                tickFormatter={(value) => `$${value}`}
+                tickFormatter={(val) => `$${val.toLocaleString()}`}
               />
               <Tooltip 
-                contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
-                formatter={(value) => [`$${value}`, "Savings"]}
+                contentStyle={{ 
+                  borderRadius: '1rem', 
+                  border: 'none', 
+                  boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)',
+                  padding: '1rem'
+                }}
+                formatter={(val: number) => [`$${val.toLocaleString()}`, 'Projected Savings']}
               />
               <Area 
                 type="monotone" 
-                dataKey="amount" 
-                stroke="#3B82F6" 
+                dataKey="value" 
+                stroke="#2563eb" 
                 strokeWidth={3}
                 fillOpacity={1} 
-                fill="url(#colorAmount)" 
+                fill="url(#colorValue)" 
               />
             </AreaChart>
           </ResponsiveContainer>

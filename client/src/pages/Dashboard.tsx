@@ -1,15 +1,16 @@
-import { useDashboard } from "@/hooks/use-dashboard";
+import { useDashboard, useUpdateFinancials } from "@/hooks/use-dashboard";
 import { PetCard } from "@/components/PetCard";
 import { GrowthChart } from "@/components/GrowthChart";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Plus, Wallet, Trophy, ArrowRight } from "lucide-react";
+import { Plus, Wallet, Trophy, ArrowRight, TrendingUp } from "lucide-react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 
 export default function Dashboard() {
   const { data, isLoading, error } = useDashboard();
+  const updateFinancials = useUpdateFinancials();
 
   if (isLoading) return <DashboardSkeleton />;
   if (error) return <div className="pt-20 text-center">Failed to load dashboard.</div>;
@@ -104,13 +105,31 @@ export default function Dashboard() {
                 <div className="p-2 bg-green-50 rounded-lg text-green-600">
                   <TrendingUp className="w-5 h-5" />
                 </div>
-                <span className="text-sm font-medium text-slate-500">Monthly Goal</span>
+                <span className="text-sm font-medium text-slate-500">Monthly Contribution</span>
               </div>
-              <div className="flex items-end justify-between">
-                <p className="text-3xl font-display font-bold text-slate-900">
-                  ${data.financialProfile.monthlyContribution || 0}
-                </p>
-                <span className="text-sm text-slate-400 mb-1">/ month</span>
+              <div className="flex flex-col gap-4">
+                <div className="flex items-end justify-between">
+                  <p className="text-3xl font-display font-bold text-slate-900">
+                    ${data.financialProfile.monthlyContribution || 0}
+                  </p>
+                  <span className="text-sm text-slate-400 mb-1">/ month</span>
+                </div>
+                <div className="grid grid-cols-3 gap-2">
+                  {[5, 10, 15].map((amt) => (
+                    <Button 
+                      key={amt}
+                      variant={data.financialProfile.monthlyContribution === amt ? "default" : "outline"}
+                      size="sm"
+                      className="rounded-lg h-8 text-xs"
+                      disabled={updateFinancials.isPending}
+                      onClick={() => {
+                        updateFinancials.mutate({ monthlyContribution: amt });
+                      }}
+                    >
+                      ${amt}
+                    </Button>
+                  ))}
+                </div>
               </div>
             </motion.div>
           </div>
