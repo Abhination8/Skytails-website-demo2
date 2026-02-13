@@ -1,6 +1,6 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { api, type DashboardDataResponse } from "@shared/routes";
-import { type UpdateFinancialProfileRequest, type FinancialProfile } from "@shared/schema";
+import { api } from "@shared/routes";
+import { type DashboardDataResponse, type UpdateFinancialProfileRequest, type FinancialProfile } from "@shared/schema";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 
 export function useDashboard() {

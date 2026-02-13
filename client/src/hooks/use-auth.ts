@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { api, type CreateUserRequest } from "@shared/routes";
+import { api } from "@shared/routes";
+import { type CreateUserRequest } from "@shared/schema";
 import { useLocation } from "wouter";
 
 // We use the /api/auth/me endpoint to check current session

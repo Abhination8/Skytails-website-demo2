@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { api, type UpdateFinancialProfileRequest } from "@shared/routes";
+import { api } from "@shared/routes";
+import { type UpdateFinancialProfileRequest } from "@shared/schema";
 
 export function useUpdateFinancials() {
   const queryClient = useQueryClient();

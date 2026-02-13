@@ -44,7 +44,7 @@ export default function Dashboard() {
           </div>
           
           {data.pets.length > 0 ? (
-            data.pets.map((pet, i) => (
+            data.pets.map((pet: any, i: number) => (
               <PetCard key={pet.id} pet={pet} index={i} />
             ))
           ) : (

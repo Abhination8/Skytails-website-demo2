@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { api, buildUrl, type CreatePetRequest, type UpdatePetRequest } from "@shared/routes";
+import { api, buildUrl } from "@shared/routes";
+import { type CreatePetRequest, type UpdatePetRequest } from "@shared/schema";
 
 export function useCreatePet() {
   const queryClient = useQueryClient();
