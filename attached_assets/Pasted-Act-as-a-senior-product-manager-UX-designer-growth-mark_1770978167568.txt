@@ -1,0 +1,157 @@
+Act as a senior product manager, UX designer, growth marketer, and senior frontend engineer.
+
+Build a HIGH-FIDELITY web prototype for a pet financial platform called "SkyTails".
+
+This prototype must focus on improving:
+1. Acquisition
+2. Engagement
+3. Revenue
+
+The current problem:
+Users drop off because onboarding feels like a financial application instead of a pet experience.
+
+The new UX must prioritize:
+FAST SIGNUP → DASHBOARD FIRST → PROGRESSIVE PROFILE COMPLETION.
+
+--------------------------------------------------
+TECH STACK
+--------------------------------------------------
+React
+TailwindCSS
+Framer Motion
+Single-page app with mock routing
+No backend needed
+
+--------------------------------------------------
+GLOBAL DESIGN PRINCIPLES
+--------------------------------------------------
+- Inspired by Basepaws storytelling
+- Emotional pet-first visuals
+- Fintech trust styling
+- Soft blue + white palette
+- Large whitespace
+- Modular sections
+
+--------------------------------------------------
+PUBLIC LANDING PAGE (ACQUISITION FOCUSED)
+--------------------------------------------------
+
+Hero:
+"Your pet deserves a smarter financial future."
+
+Primary CTA:
+Create Free Account
+
+NO long forms on landing page.
+
+Sections:
+- Benefits grid
+- How it works (3 steps)
+- Plan cards styled like products
+- Dashboard preview
+- Social mission section
+
+--------------------------------------------------
+FAST SIGNUP FLOW
+--------------------------------------------------
+
+Only ask:
+- Email
+- Password
+- Optional pet name
+
+After signup:
+User immediately lands on DASHBOARD.
+
+--------------------------------------------------
+LOGGED-IN EXPERIENCE (ENGAGEMENT CORE)
+--------------------------------------------------
+
+Create a main Dashboard homepage with:
+
+1. PET OVERVIEW CARD
+- Pet avatar
+- Age
+- Care milestones
+
+2. INVESTMENT GROWTH CARD
+- Mock savings chart
+- Future care fund estimate
+
+3. ENGAGEMENT WIDGETS
+- Daily pet insight
+- AI recommendation
+- Progress streak
+
+4. CTA MODULE:
+"Complete your profile to unlock more features"
+
+--------------------------------------------------
+PROFILE & SETTINGS AREA (PROGRESSIVE ONBOARDING)
+--------------------------------------------------
+
+Create a profile section with tabs:
+
+[My Pets]
+- Add pet details
+- Breed
+- Health notes
+- Upload avatar
+
+[Financial Setup]
+- Payment method
+- Monthly contribution slider
+
+[Identity Verification]
+- Mock KYC form
+- Show completion progress bar
+
+[Investment Preferences]
+- Risk level selector
+- Goal timeline
+
+IMPORTANT:
+Each tab should feel lightweight and optional.
+Use completion percentages to gamify progress.
+
+--------------------------------------------------
+PLAN SELECTION EXPERIENCE
+--------------------------------------------------
+
+Plans should NOT appear during signup.
+
+Instead:
+Show plan upgrade cards inside dashboard.
+
+Plans:
+Classic
+Core
+Premium
+
+Each plan shows:
+- Benefits
+- Animated growth preview
+
+--------------------------------------------------
+ANIMATIONS
+--------------------------------------------------
+- Smooth page transitions
+- Hover effects on cards
+- Progress bars filling as profile completes
+- Dashboard widgets fade-in
+
+--------------------------------------------------
+OUTPUT REQUIREMENTS
+--------------------------------------------------
+Generate:
+
+- Full React project
+- Component-based structure
+- Routes:
+  /landing
+  /dashboard
+  /profile
+- Mock data state
+- Highly polished UI
+
+Focus on making SkyTails feel like a PET PLATFORM FIRST and FINTECH SECOND.
